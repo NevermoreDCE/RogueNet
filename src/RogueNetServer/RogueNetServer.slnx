@@ -1,0 +1,6 @@
+<Solution>
+  <Folder Name="/roguenet.logic/">
+    <Project Path="roguenet.logic/RogueNet.Logic.csproj" />
+  </Folder>
+  <Project Path="roguenet.api/roguenet.api.csproj" />
+</Solution>
