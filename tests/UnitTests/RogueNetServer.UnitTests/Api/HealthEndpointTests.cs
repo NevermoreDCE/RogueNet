@@ -3,7 +3,8 @@ using Microsoft.AspNetCore.Mvc.Testing;
 
 namespace RogueNetServer.UnitTests.Api;
 
-public sealed class HealthEndpointTests : IClassFixture<WebApplicationFactory<Program>>
+[Collection(ApiIntegrationCollection.Name)]
+public sealed class HealthEndpointTests
 {
     private readonly HttpClient _client;
 

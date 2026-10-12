@@ -1,5 +1,7 @@
 using Serilog;
 using Serilog.Events;
+using System.Text.Json.Serialization;
+using RogueNet.Logic.MapGeneration;
 
 Log.Logger = new LoggerConfiguration()
     .MinimumLevel.Information()
@@ -19,9 +21,12 @@ try
         .WriteTo.Console(standardErrorFromLevel: LogEventLevel.Error));
 
     // Add services to the container.
-    builder.Services.AddControllers();
+    builder.Services.AddControllers()
+        .AddJsonOptions(options =>
+            options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
     builder.Services.AddOpenApi();
     builder.Services.AddHealthChecks();
+    builder.Services.AddSingleton<DungeonMapGenerator>();
 
     var clientOrigin = builder.Configuration["ClientOrigin"] ?? "http://localhost:5173";
     builder.Services.AddCors(options => options.AddPolicy("LocalClient", policy =>

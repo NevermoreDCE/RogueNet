@@ -25,3 +25,9 @@ The API accepts browser requests only from `http://localhost:5173` by default. I
 - To reset local database files after SQLite is introduced, stop the stack and remove the repository's `data` directory. On PowerShell: `Remove-Item -Recurse -Force .\data`; on macOS/Linux: `rm -rf ./data`. This deletes all local saved data.
 
 For host-based client development, run `npm ci` and `npm run dev` from `src/RogueNetClient`. Set `VITE_API_BASE_URL` if the API is running at a different address; the default is `http://localhost:5130`.
+
+## Stage 2: generated dungeon atlas
+
+The client requests a generated layout from `GET /api/maps`. Pass an integer seed to reproduce the layout, for example `http://localhost:5130/api/maps?seed=37007434`. Without a seed, the API chooses one and returns it in the response. The response includes map dimensions, string-valued terrain/features, rooms, connections, and row-major tile data.
+
+In the browser, enter a seed and choose **Generate seed**, or choose **Randomize** for a new layout. The returned seed is shown with the map so it can be replayed. Stage 2 unit and API contract tests run with `dotnet test tests/UnitTests/RogueNetServer.UnitTests/RogueNetServer.UnitTests.csproj`.

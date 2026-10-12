@@ -105,6 +105,8 @@ Each stage is a small vertical slice with a visible demonstration. Do not start 
 
 ### Stage 2 — Tested dungeon generation in the browser
 
+**Status:** Implemented and verified locally with the API/client containers and seeded browser generation.
+
 **Atomic deliverable:** The browser displays a server-generated dungeon using the existing Logic generator.
 
 - Add unit tests for room bounds/buffers, map dimensions, connectivity graph, corridor reachability, wall boundaries, stairs, and reproducibility for a fixed seed.
