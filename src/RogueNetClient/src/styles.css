@@ -73,6 +73,7 @@ h1 em { color: var(--accent); font-weight: 500; }
 .button-secondary { border-color: rgba(222, 223, 205, .18); background: rgba(21, 28, 23, .7); color: #d9dccd; }
 .button-secondary:hover:not(:disabled) { border-color: rgba(222, 223, 205, .42); background: rgba(37, 47, 38, .85); }
 .button-secondary > span { color: var(--accent); font-size: 16px; line-height: 1; }
+.dive-toolbar-actions { display: flex; align-items: center; gap: 9px; }
 .error-message { margin: 11px 0 0; color: #e49a83; font-size: 12px; }
 
 .map-layout { display: grid; grid-template-columns: minmax(0, 1fr) 248px; align-items: start; gap: 21px; margin-top: 19px; }
@@ -97,6 +98,7 @@ h1 em { color: var(--accent); font-weight: 500; }
 .tile-water { color: #67bfca; }
 .tile-trap { color: #e37b65; }
 .tile-treasure { color: #f0cd6e; }
+.tile-player { position: relative; z-index: 1; background: #d9a45d; color: #121711; font-weight: 800; text-shadow: none; }
 .viewer-footer { min-height: 37px; border-top: 1px solid rgba(222, 223, 205, .1); color: #737e70; font-size: 8px; }
 .viewer-footer strong { margin-left: 5px; color: #c7cbbb; font-weight: 500; letter-spacing: 0; }
 .map-message { display: flex; min-height: 340px; align-items: center; justify-content: center; gap: 12px; color: #aab19f; font-family: var(--mono); font-size: 11px; }
@@ -110,6 +112,22 @@ h1 em { color: var(--accent); font-weight: 500; }
 .data-strip > div:last-child { border-right: 0; }
 .data-strip span { color: #818b7d; font-size: 8px; }
 .data-strip strong { overflow: hidden; color: #e5e2d3; font-family: var(--mono); font-size: 16px; font-weight: 400; text-overflow: ellipsis; }
+.dive-state { padding: 13px 0 0; border-top: 1px solid rgba(222, 223, 205, .13); }
+.dive-state > div { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; }
+.dive-state > div > span, .interact-control label { color: #818b7d; font-family: var(--mono); font-size: 8px; letter-spacing: .12em; }
+.dive-state > div > strong { color: #e5e2d3; font-family: var(--mono); font-size: 12px; font-weight: 400; }
+.action-result { min-height: 32px; margin: 9px 0 0; color: #c9d1bd; font-size: 11px; line-height: 1.45; }
+.action-result.failed { color: #e49a83; }
+.dive-controls { padding-top: 1px; }
+.dpad { display: grid; width: 126px; grid-template-columns: repeat(3, 38px); grid-template-rows: repeat(3, 38px); gap: 3px; margin: 13px auto 15px; }
+.dpad button { display: grid; width: 38px; height: 38px; place-items: center; border: 1px solid rgba(222, 223, 205, .2); border-radius: 2px; background: rgba(21, 28, 23, .82); color: #e7c27f; cursor: pointer; font-size: 18px; }
+.dpad button:hover:not(:disabled) { border-color: rgba(217, 164, 93, .7); background: rgba(62, 54, 37, .72); }
+.dpad button:disabled { cursor: not-allowed; opacity: .4; }
+.dpad-center { display: grid; place-items: center; color: #687467; }
+.interact-control { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 8px; }
+.interact-control label { grid-column: 1 / -1; }
+.interact-control select { width: 100%; min-width: 0; height: 34px; padding: 0 7px; border: 1px solid rgba(222, 223, 205, .18); border-radius: 2px; background: #151c17; color: #dedfd2; font-size: 10px; }
+.interact-control .button { min-height: 34px; padding: 0 10px; }
 .legend-section { padding: 1px 0 0; }
 .section-heading { display: flex; align-items: baseline; justify-content: space-between; padding-bottom: 11px; border-bottom: 1px solid rgba(222, 223, 205, .13); }
 .section-heading h2 { margin: 0; color: #e1e2d6; font-family: Georgia, 'Times New Roman', serif; font-size: 21px; font-weight: 500; }
@@ -139,7 +157,8 @@ h1 em { color: var(--accent); font-weight: 500; }
   .map-layout { grid-template-columns: minmax(0, 1fr); }
   .map-scroll { max-height: 58vh; min-height: 310px; padding: 15px 12px; }
   .map-aside { display: grid; grid-template-columns: minmax(150px, .8fr) minmax(0, 1.2fr); align-items: start; gap: 18px; }
-  .data-strip, .engine-note { grid-column: 1 / -1; }
+  .data-strip, .engine-note, .dive-state, .dive-controls { grid-column: 1 / -1; }
+  .dpad { margin-left: 0; }
   .legend-section { grid-column: 1 / -1; }
   .legend-list { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 14px; }
   .legend-list li { gap: 7px; font-size: 10px; }

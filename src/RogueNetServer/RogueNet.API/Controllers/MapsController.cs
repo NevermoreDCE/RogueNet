@@ -16,20 +16,7 @@ public sealed class MapsController(
     {
         var actualSeed = seed ?? Random.Shared.Next();
         var map = mapGenerator.Generate(random: new Random(actualSeed));
-        var response = new DungeonMapResponse(
-            actualSeed,
-            map.Width,
-            map.Height,
-            map.Rooms.Select(room => new DungeonRoomResponse(
-                room.Id, room.X, room.Y, room.Width, room.Height, room.Category)).ToArray(),
-            map.Connections.Select(connection => new DungeonRoomConnectionResponse(
-                connection.FromRoomId, connection.ToRoomId, connection.IsOptionalLoop, connection.Kind)).ToArray(),
-            Enumerable.Range(0, map.Height)
-                .Select(y => (IReadOnlyList<DungeonTileResponse>)Enumerable.Range(0, map.Width)
-                    .Select(x => map.Tiles[y, x])
-                    .Select(tile => new DungeonTileResponse(tile.Terrain, tile.Feature, tile.RoomId))
-                    .ToArray())
-                .ToArray());
+        var response = DungeonMapResponse.FromMap(actualSeed, map);
 
         logger.LogInformation(
             "Generated dungeon map for seed {Seed} with {Width} by {Height} tiles, {RoomCount} rooms, and {ConnectionCount} connections",

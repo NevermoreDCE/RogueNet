@@ -31,3 +31,13 @@ For host-based client development, run `npm ci` and `npm run dev` from `src/Rogu
 The client requests a generated layout from `GET /api/maps`. Pass an integer seed to reproduce the layout, for example `http://localhost:5130/api/maps?seed=37007434`. Without a seed, the API chooses one and returns it in the response. The response includes map dimensions, string-valued terrain/features, rooms, connections, and row-major tile data.
 
 In the browser, enter a seed and choose **Generate seed**, or choose **Randomize** for a new layout. The returned seed is shown with the map so it can be replayed. Stage 2 unit and API contract tests run with `dotnet test tests/UnitTests/RogueNetServer.UnitTests/RogueNetServer.UnitTests.csproj`.
+
+## Stage 3: single-player movement
+
+Choose **Enter dive** to start an in-memory dive using the selected seed. The server places the player on the entrance stairs and returns the authoritative map, position, turn, and last action. Use the directional controls to move or choose a direction and **Interact** to open a closed or locked adjacent door. Every submitted action consumes one turn, including blocked movement; the player position changes only when the server accepts movement. The map marks the current player position with `@`.
+
+- `POST /api/dungeon-dives` starts a dive. The optional request body is `{"seed":37007434}`; omit or null the seed for a random seed.
+- `GET /api/dungeon-dives/{id}` returns the current dive snapshot.
+- `POST /api/dungeon-dives/{id}/actions` accepts intent only, for example `{"kind":"Move","direction":"North"}` or `{"kind":"Interact","direction":"East"}`. Clients do not submit coordinates.
+
+Active dives are held in server memory and are lost when the API process restarts. Domain and API tests run with `dotnet test tests/UnitTests/RogueNetServer.UnitTests/RogueNetServer.UnitTests.csproj`.

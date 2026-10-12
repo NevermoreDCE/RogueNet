@@ -1,6 +1,7 @@
 using Serilog;
 using Serilog.Events;
 using System.Text.Json.Serialization;
+using RogueNet.API.Game;
 using RogueNet.Logic.MapGeneration;
 
 Log.Logger = new LoggerConfiguration()
@@ -27,6 +28,7 @@ try
     builder.Services.AddOpenApi();
     builder.Services.AddHealthChecks();
     builder.Services.AddSingleton<DungeonMapGenerator>();
+    builder.Services.AddSingleton<DungeonDiveRegistry>();
 
     var clientOrigin = builder.Configuration["ClientOrigin"] ?? "http://localhost:5173";
     builder.Services.AddCors(options => options.AddPolicy("LocalClient", policy =>

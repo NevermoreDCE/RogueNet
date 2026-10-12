@@ -3,6 +3,7 @@
         "dotnet new": true,
         "dotnet add": true,
         "dotnet test": true,
-        "npm run build": true
+        "npm run build": true,
+        "dotnet build": true
     }
 }
