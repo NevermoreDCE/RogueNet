@@ -88,6 +88,11 @@ project.fragment.lock.json
 artifacts/
 .artifacts/
 
+# Node / local development data
+**/node_modules/
+**/dist/
+/data/
+
 # ASP.NET Scaffolding
 ScaffoldingReadMe.txt
 

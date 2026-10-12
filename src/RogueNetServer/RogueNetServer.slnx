@@ -2,5 +2,6 @@
   <Folder Name="/roguenet.logic/">
     <Project Path="roguenet.logic/RogueNet.Logic.csproj" />
   </Folder>
+  <Project Path="../../tests/UnitTests/RogueNetServer.UnitTests/RogueNetServer.UnitTests.csproj" />
   <Project Path="roguenet.api/roguenet.api.csproj" />
 </Solution>

@@ -1,0 +1,108 @@
+:root {
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  color: #e9e8dc;
+  background: #111713;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  --muted: #979d8d;
+  --accent: #d9a45d;
+  --green: #8ac59a;
+}
+
+* { box-sizing: border-box; }
+
+body { margin: 0; min-width: 320px; min-height: 100vh; }
+button, a { font: inherit; }
+
+.page-shell {
+  position: relative;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 0 clamp(24px, 8vw, 120px);
+  background:
+    radial-gradient(ellipse at 50% 47%, rgba(42, 66, 48, .20), transparent 39%),
+    linear-gradient(135deg, #111713 0%, #151c17 48%, #101511 100%);
+}
+
+.page-shell::before {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(rgba(211, 222, 200, .022) 1px, transparent 1px), linear-gradient(90deg, rgba(211, 222, 200, .022) 1px, transparent 1px);
+  background-size: 46px 46px;
+  content: '';
+  mask-image: linear-gradient(transparent, #000 20%, #000 80%, transparent);
+  pointer-events: none;
+}
+
+.ambient { position: absolute; width: 440px; height: 440px; border: 1px solid rgba(217, 164, 93, .08); border-radius: 50%; pointer-events: none; }
+.ambient::after { position: absolute; inset: 25px; border: 1px solid rgba(217, 164, 93, .05); border-radius: 50%; content: ''; }
+.ambient-one { top: 21%; left: -340px; }
+.ambient-two { right: -355px; bottom: 5%; width: 520px; height: 520px; }
+
+.topbar, .footer, .hero { position: relative; z-index: 1; }
+.topbar { display: flex; height: 94px; align-items: center; justify-content: space-between; border-bottom: 1px solid rgba(222, 223, 205, .11); }
+.brand { display: inline-flex; align-items: center; gap: 12px; color: #f2efe3; font-family: ui-monospace, 'Cascadia Code', Consolas, monospace; font-size: 14px; font-weight: 500; letter-spacing: .16em; text-decoration: none; }
+.brand-accent { color: var(--accent); }
+.brand-mark { display: grid; width: 31px; height: 34px; place-items: center; border: 1px solid rgba(217, 164, 93, .68); color: var(--accent); font-family: Georgia, serif; font-size: 22px; letter-spacing: 0; transform: rotate(45deg) scale(.86); }
+.brand-mark::first-letter { transform: rotate(-45deg); }
+.local-tag, .eyebrow, .status-label, .status-pill, .meta-key, .footer { font-family: ui-monospace, 'Cascadia Code', Consolas, monospace; font-size: 10px; letter-spacing: .13em; }
+.local-tag { display: inline-flex; align-items: center; gap: 9px; color: #b3b7a9; }
+.local-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); box-shadow: 0 0 11px rgba(138, 197, 154, .7); }
+
+.hero { width: min(100%, 690px); margin: auto; padding: 70px 0 90px; }
+.eyebrow { display: flex; align-items: center; gap: 10px; margin: 0 0 27px; color: var(--accent); }
+.eyebrow span { width: 23px; height: 1px; background: var(--accent); }
+h1 { margin: 0; font-family: Georgia, 'Times New Roman', serif; font-size: clamp(58px, 8.1vw, 94px); font-weight: 500; letter-spacing: -.055em; line-height: .99; }
+h1 em { color: var(--accent); font-weight: 500; }
+.intro { margin: 25px 0 39px; color: #a9aea1; font-size: 15px; line-height: 1.8; }
+
+.connection-card { display: flex; align-items: center; gap: 19px; min-height: 132px; padding: 25px 27px; border: 1px solid rgba(222, 223, 205, .14); background: rgba(23, 31, 25, .87); box-shadow: 0 18px 80px rgba(0, 0, 0, .17); transition: border-color .25s, background .25s; }
+.connection-card.connected { border-color: rgba(138, 197, 154, .35); background: rgba(26, 43, 31, .72); }
+.connection-card.disconnected { border-color: rgba(222, 130, 105, .45); background: rgba(44, 29, 25, .7); }
+.status-icon { display: grid; width: 43px; height: 43px; flex: 0 0 43px; place-items: center; border: 1px solid rgba(222, 223, 205, .19); border-radius: 50%; color: var(--muted); font-size: 21px; }
+.connected .status-icon { border-color: rgba(138, 197, 154, .47); color: var(--green); }
+.disconnected .status-icon { border-color: rgba(222, 130, 105, .5); color: #de8269; }
+.check { font-size: 17px; }
+.cross { font-size: 26px; line-height: 1; }
+.status-copy { min-width: 0; flex: 1; }
+.status-label { color: #8d9587; font-size: 9px; }
+.status-copy h2 { margin: 5px 0 4px; color: #ecebdf; font-size: 17px; font-weight: 600; letter-spacing: -.02em; }
+.status-copy p { max-width: 430px; margin: 0; color: #a3aa9d; font-size: 12px; line-height: 1.55; }
+.status-pill { flex-shrink: 0; padding: 7px 9px; border: 1px solid rgba(222, 223, 205, .15); color: #a6aa9e; font-size: 8px; }
+.connected .status-pill { border-color: rgba(138, 197, 154, .33); color: var(--green); }
+.disconnected .status-pill { border-color: rgba(222, 130, 105, .35); color: #de947e; }
+.spinner { width: 15px; height: 15px; border: 1px solid rgba(217, 164, 93, .25); border-top-color: var(--accent); border-radius: 50%; animation: spin .8s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.connection-meta { display: flex; justify-content: space-between; gap: 20px; padding: 17px 2px; color: #a5aa9d; font-family: ui-monospace, 'Cascadia Code', Consolas, monospace; font-size: 10px; }
+.connection-meta > span { display: flex; align-items: center; gap: 10px; }
+.meta-key { color: #737c70; font-size: 8px; }
+.connection-meta code { color: #c4c7b7; font-family: inherit; font-size: inherit; }
+.footer { display: flex; align-items: center; justify-content: center; gap: 15px; min-height: 63px; border-top: 1px solid rgba(222, 223, 205, .1); color: #70796d; font-size: 8px; }
+.footer-separator { color: var(--accent); font-size: 7px; }
+
+@media (max-width: 600px) {
+  .page-shell { padding: 0 22px; }
+  .topbar { height: 76px; }
+  .local-tag { font-size: 8px; }
+  .hero { padding: 60px 0 75px; }
+  .intro { font-size: 14px; }
+  .desktop-break { display: none; }
+  .connection-card { position: relative; align-items: flex-start; gap: 13px; padding: 20px 16px 48px; }
+  .status-icon { width: 37px; height: 37px; flex-basis: 37px; }
+  .status-copy h2 { font-size: 15px; }
+  .status-copy p { font-size: 11px; }
+  .status-pill { position: absolute; right: 16px; bottom: 13px; }
+  .connection-meta { align-items: flex-start; flex-direction: column; gap: 12px; font-size: 9px; }
+  .footer { flex-wrap: wrap; gap: 8px; font-size: 7px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}
